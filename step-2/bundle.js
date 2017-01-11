@@ -65,7 +65,7 @@
 	});
 	exports.default = bar;
 	function bar() {
-	  alert('Hello Webpack');
+	  alert('Hello Webpack!');
 	}
 
 /***/ }
