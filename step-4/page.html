@@ -3,7 +3,41 @@
     <meta charset=utf-8>
   </head>
   <body>
-    <div id="app">
+  <div id="app">
+    <section id="signInAndSignUp">
+      <div>
+        <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
+        <label><input type="radio" name="type" value="login" v-model="actionType">登入</label>
+      </div>
+      <div class="signUp" v-if="actionType === 'signUp'">
+        <form @submit.prevent="signUp">
+          <div class="formRow">
+            用户名<input type="text" v-model="formData.username">
+          </div>
+          <div class="formRow">
+            密码<input type="password" v-model="formData.password">
+          </div>
+          <div class="formActions">
+            <input type="submit" value="注册">
+          </div>
+        </form>
+      </div>
+      <div class="login" v-if="actionType === 'login'">
+        <form>
+          <div class="formRow">
+            用户名<input type="text">
+          </div>
+          <div class="formRow">
+            密码<input type="password">
+          </div>
+          <div class="formActions">
+            <input type="submit" value="登入">
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="todo">
       <div class="newTask">
         <input type="text" v-model="newTodo" @keypress.enter="addTodo">
       </div>
@@ -17,7 +51,8 @@
           <button @click="removeTodo(todo)">X</button>
         </li>
       </ol>
-    </div>
-    <script src="bundle.js"></script>
+    </section>
+  </div>
+  <script src="bundle.js"></script>
   </body>
 </html>
