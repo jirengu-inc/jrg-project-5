@@ -87,6 +87,8 @@
 	    var oldDataString = window.localStorage.getItem('myTodos');
 	    var oldData = JSON.parse(oldDataString);
 	    this.todoList = oldData || [];
+
+	    this.currentUser = this.getCurrentUser();
 	  },
 	  methods: {
 	    addTodo: function addTodo() {
@@ -123,15 +125,18 @@
 	      });
 	    },
 	    getCurrentUser: function getCurrentUser() {
-	      var _AV$User$current = _leancloudStorage2.default.User.current(),
-	          id = _AV$User$current.id,
-	          createdAt = _AV$User$current.createdAt,
-	          username = _AV$User$current.attributes.username;
-	      // 上面这句话看不懂就得看 MDN 文档了
-	      // 我的《ES 6 新特性列表》里面有链接：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+	      var current = _leancloudStorage2.default.User.current();
+	      if (current) {
+	        var id = current.id,
+	            createdAt = current.createdAt,
+	            username = current.attributes.username;
+	        // 上面这句话看不懂就得看 MDN 文档了
+	        // 我的《ES 6 新特性列表》里面有链接：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
-
-	      return { id: id, username: username, createdAt: createdAt }; // 看文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#ECMAScript_6%E6%96%B0%E6%A0%87%E8%AE%B0
+	        return { id: id, username: username, createdAt: createdAt }; // 看文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#ECMAScript_6%E6%96%B0%E6%A0%87%E8%AE%B0
+	      } else {
+	        return null;
+	      }
 	    },
 	    logout: function logout() {
 	      _leancloudStorage2.default.User.logOut();

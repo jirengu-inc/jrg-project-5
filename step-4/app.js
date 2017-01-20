@@ -31,6 +31,8 @@ var app = new Vue({
     let oldData = JSON.parse(oldDataString)
     this.todoList = oldData || []
 
+    this.currentUser = this.getCurrentUser();
+
   },
   methods: {
     addTodo: function(){
@@ -63,10 +65,15 @@ var app = new Vue({
       });
     },
     getCurrentUser: function () {
-      let {id, createdAt, attributes: {username}} = AV.User.current()
-      // 上面这句话看不懂就得看 MDN 文档了
-      // 我的《ES 6 新特性列表》里面有链接：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-      return {id, username, createdAt} // 看文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#ECMAScript_6%E6%96%B0%E6%A0%87%E8%AE%B0
+      let current = AV.User.current()
+      if (current) {
+        let {id, createdAt, attributes: {username}} = current
+        // 上面这句话看不懂就得看 MDN 文档了
+        // 我的《ES 6 新特性列表》里面有链接：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+        return {id, username, createdAt} // 看文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#ECMAScript_6%E6%96%B0%E6%A0%87%E8%AE%B0
+      } else {
+        return null
+      }
     },
     logout: function () {
       AV.User.logOut()
