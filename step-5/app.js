@@ -26,6 +26,17 @@ var app = new Vue({
 
   },
   methods: {
+    saveTodos: function(){
+      let dataString = JSON.stringify(this.todoList)
+      var AVTodos = AV.Object.extend('AllTodos');
+      var avTodos = new AVTodos();
+      avTodos.set('content', dataString);
+      avTodos.save().then(function (todo) {
+        alert('保存成功');
+      }, function (error) {
+        alert('保存失败');
+      });
+    },
     addTodo: function(){
       this.todoList.push({
         title: this.newTodo,
@@ -33,10 +44,12 @@ var app = new Vue({
         done: false // 添加一个 done 属性
       })
       this.newTodo = ''
+      this.saveTodos()
     },
     removeTodo: function(todo){
       let index = this.todoList.indexOf(todo) // Array.prototype.indexOf 是 ES 5 新加的 API
       this.todoList.splice(index,1) // 不懂 splice？赶紧看 MDN 文档！
+      this.saveTodos()
     },
     signUp: function () {
       let user = new AV.User();
