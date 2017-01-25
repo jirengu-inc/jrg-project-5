@@ -59,7 +59,7 @@ var app = new Vue({
       avTodos.setACL(acl) // 设置访问控制
       avTodos.save().then((todo) =>{
         this.todoList.id = todo.id  // 一定要记得把 id 挂到 this.todoList 上，否则下次就不会调用 updateTodos 了
-        alert('保存成功');
+        console.log('保存成功');
       }, function (error) {
         alert('保存失败');
       });
@@ -93,6 +93,7 @@ var app = new Vue({
         this.currentUser = this.getCurrentUser()
       }, (error) => {
         alert('注册失败')
+        console.log(error)
       });
     },
     login: function () {
@@ -100,6 +101,7 @@ var app = new Vue({
         this.currentUser = this.getCurrentUser()
       }, function (error) {
         alert('登录失败')
+        console.log(error)
       });
     },
     getCurrentUser: function () {
