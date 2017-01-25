@@ -23,21 +23,24 @@ var app = new Vue({
   created: function(){
 
     this.currentUser = this.getCurrentUser();
-    if(this.currentUser){
-      var query = new AV.Query('AllTodos');
-      query.find()
-        .then((todos) => {
-          let avAllTodos = todos[0] // 因为理论上 AllTodos 只有一个，所以我们取结果的第一项
-          let id = avAllTodos.id
-          this.todoList = JSON.parse(avAllTodos.attributes.content) // 为什么有个 attributes？因为我从控制台看到的
-          this.todoList.id = id // 为什么给 todoList 这个数组设置 id？因为数组也是对象啊
-        }, function(error){
-          console.error(error) 
-        })
-    }
+    this.fetchTodos() // 将原来的一坨代码取一个名字叫做 fetchTodos
 
   },
   methods: {
+    fetchTodos: function(){
+      if(this.currentUser){
+        var query = new AV.Query('AllTodos');
+        query.find()
+          .then((todos) => {
+            let avAllTodos = todos[0] // 因为理论上 AllTodos 只有一个，所以我们取结果的第一项
+            let id = avAllTodos.id
+            this.todoList = JSON.parse(avAllTodos.attributes.content) // 为什么有个 attributes？因为我从控制台看到的
+            this.todoList.id = id // 为什么给 todoList 这个数组设置 id？因为数组也是对象啊
+          }, function(error){
+            console.error(error) 
+          })
+      }
+    },
     updateTodos: function(){
       // 想要知道如何更新对象，先看文档 https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
       let dataString = JSON.stringify(this.todoList) // JSON 在序列化这个有 id 的数组的时候，会得出怎样的结果？
@@ -99,6 +102,7 @@ var app = new Vue({
     login: function () {
       AV.User.logIn(this.formData.username, this.formData.password).then((loginedUser) => {
         this.currentUser = this.getCurrentUser()
+        this.fetchTodos() // 登录成功后读取 todos
       }, function (error) {
         alert('登录失败')
         console.log(error)
