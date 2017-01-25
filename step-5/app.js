@@ -23,6 +23,15 @@ var app = new Vue({
   created: function(){
 
     this.currentUser = this.getCurrentUser();
+    if(this.currentUser){
+      var query = new AV.Query('AllTodos');
+      query.find()
+        .then(function (todos) {
+          console.log(todos)
+        }, function(error){
+          console.error(error) 
+        })
+    }
 
   },
   methods: {
