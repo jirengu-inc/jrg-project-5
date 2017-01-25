@@ -24,12 +24,23 @@ var app = new Vue({
     // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
     window.onbeforeunload = ()=>{
       let dataString = JSON.stringify(this.todoList) // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
-      window.localStorage.setItem('myTodos', dataString) // 看文档https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage
+
+      var AVTodos = AV.Object.extend('AllTodos');
+      var avTodos = new AVTodos();
+      avTodos.set('content', dataString);
+      avTodos.save().then(function (todo) {
+        // 成功保存之后，执行其他逻辑.
+        console.log('保存成功');
+      }, function (error) {
+        // 异常处理
+        console.error('保存失败');
+      });
     }
 
-    let oldDataString = window.localStorage.getItem('myTodos')
-    let oldData = JSON.parse(oldDataString)
-    this.todoList = oldData || []
+    // 从 LeanCloud 读取 todos 的逻辑先不写
+    //let oldDataString = window.localStorage.getItem('myTodos')
+    //let oldData = JSON.parse(oldDataString)
+    //this.todoList = oldData || []
 
     this.currentUser = this.getCurrentUser();
 
