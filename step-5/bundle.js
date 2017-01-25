@@ -76,28 +76,6 @@
 	    currentUser: null
 	  },
 	  created: function created() {
-	    var _this = this;
-
-	    // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
-	    window.onbeforeunload = function () {
-	      var dataString = JSON.stringify(_this.todoList); // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
-
-	      var AVTodos = _leancloudStorage2.default.Object.extend('AllTodos');
-	      var avTodos = new AVTodos();
-	      avTodos.set('content', dataString);
-	      avTodos.save().then(function (todo) {
-	        // 成功保存之后，执行其他逻辑.
-	        console.log('保存成功');
-	      }, function (error) {
-	        // 异常处理
-	        console.error('保存失败');
-	      });
-	    };
-
-	    // 从 LeanCloud 读取 todos 的逻辑先不写
-	    //let oldDataString = window.localStorage.getItem('myTodos')
-	    //let oldData = JSON.parse(oldDataString)
-	    //this.todoList = oldData || []
 
 	    this.currentUser = this.getCurrentUser();
 	  },
@@ -115,22 +93,22 @@
 	      this.todoList.splice(index, 1); // 不懂 splice？赶紧看 MDN 文档！
 	    },
 	    signUp: function signUp() {
-	      var _this2 = this;
+	      var _this = this;
 
 	      var user = new _leancloudStorage2.default.User();
 	      user.setUsername(this.formData.username);
 	      user.setPassword(this.formData.password);
 	      user.signUp().then(function (loginedUser) {
-	        _this2.currentUser = _this2.getCurrentUser();
+	        _this.currentUser = _this.getCurrentUser();
 	      }, function (error) {
 	        alert('注册失败');
 	      });
 	    },
 	    login: function login() {
-	      var _this3 = this;
+	      var _this2 = this;
 
 	      _leancloudStorage2.default.User.logIn(this.formData.username, this.formData.password).then(function (loginedUser) {
-	        _this3.currentUser = _this3.getCurrentUser();
+	        _this2.currentUser = _this2.getCurrentUser();
 	      }, function (error) {
 	        alert('登录失败');
 	      });
