@@ -46,3 +46,8 @@ JS 文件已经可以运行了，Vue 也引入了，那我们就直接开始撸�
 完善任务四
 
 [No Backend 2](https://github.com/jirengu-inc/jrg-project-5/issues/5)
+
+# 任务六
+我们已经基本知道怎么使用 Vue 和 LeanCloud 了，那么我们开始真正做项目吧！
+
+[My Project](https://github.com/jirengu-inc/jrg-project-5/issues/6)
