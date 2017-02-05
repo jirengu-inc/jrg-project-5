@@ -47,6 +47,8 @@ export default {
     margin-bottom: 16px;
     display: flex;
     justify-content: space-around;
+    width: 100%; /* 试试不加这句会怎样 */
+    align-self: center;
   }
 
   #resumeEditor{
