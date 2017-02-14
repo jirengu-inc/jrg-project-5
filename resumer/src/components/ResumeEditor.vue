@@ -23,10 +23,10 @@
     name: 'ResumeEditor',
     data() {
       return {
-        selected: 'bio',
+        selected: 'profile',
         resume: {
-          visibleItems: ['bio', 'work history', 'education', 'projects', 'awards', 'contacts', 'others'],
-          bio: {
+          visibleItems: ['profile', 'work history', 'education', 'projects', 'awards', 'contacts', 'others'],
+          profile: {
             name: '',
             city: '',
             title: ''
