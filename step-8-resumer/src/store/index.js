@@ -5,7 +5,6 @@ Vue.use(Vuex) // 不写这句话浏览器控制台就会报错，于是我就写
 
 export default new Vuex.Store({
   state: {
-    count: 0,
     selected: 'profile',
     resume: {
       config: [
@@ -44,9 +43,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    increment (state) {
-      state.count++
-    },
     switchTab (state, payload){
       state.selected = payload // 关于 payload 看这里 http://vuex.vuejs.org/zh-cn/mutations.html#提交载荷（payload）
     }
