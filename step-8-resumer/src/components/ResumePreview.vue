@@ -12,7 +12,7 @@
       </p>
     </section>
 
-    <section data-name="projects" v-show="resume.education">
+    <section data-name="projects" v-show="resume.projects">
       <h2>项目经历</h2>
       <ol>
         <li v-for="item in resume.projects">
