@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "leancloud-storage": "^2.1.2",
     "node-sass": "^4.5.0",
     "normalize.css": "^5.0.0",
     "object-path": "^0.11.4",

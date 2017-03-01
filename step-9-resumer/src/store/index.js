@@ -8,6 +8,10 @@ Vue.use(Vuex) // 不写这句话浏览器控制台就会报错，于是我就写
 export default new Vuex.Store({
   state: {
     selected: 'profile',
+    user: {
+      id: '',
+      username: ''
+    },
     resume: {
       config: [
         { field: 'profile', icon: 'id' },
@@ -64,6 +68,10 @@ export default new Vuex.Store({
     updateResume(state, {path, value}){
       objectPath.set(state.resume, path, value)
       localStorage.setItem('state', JSON.stringify(state))
+    },
+    setUser(state, payload){
+      Object.assign(state.user, payload)
+      console.log(state.user)
     }
   }
 })
