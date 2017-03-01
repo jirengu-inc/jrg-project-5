@@ -1,5 +1,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue' // 思考：在多个文件 import vue ，会怎样
+import objectPath from "object-path"
+
 
 Vue.use(Vuex) // 不写这句话浏览器控制台就会报错，于是我就写了
 
@@ -55,8 +57,8 @@ export default new Vuex.Store({
     switchTab(state, payload) {
       state.selected = payload // 关于 payload 看这里 http://vuex.vuejs.org/zh-cn/mutations.html#提交载荷（payload）
     },
-    updateResume(state, {field, subfield, value}){
-      state.resume[field][subfield] = value
+    updateResume(state, {path, value}){
+      objectPath.set(state.resume, path, value)
     }
   }
 })
