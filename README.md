@@ -51,3 +51,14 @@ JS 文件已经可以运行了，Vue 也引入了，那我们就直接开始撸�
 我们已经基本知道怎么使用 Vue 和 LeanCloud 了，那么我们开始真正做项目吧！
 
 [My Project](https://github.com/jirengu-inc/jrg-project-5/issues/7)
+
+
+# 任务七
+实现导航功能和表单
+
+[Hello Modules](https://github.com/jirengu-inc/jrg-project-5/issues/8)
+
+# 任务八
+使用 Vuex 管理数据
+
+[数据！](https://github.com/jirengu-inc/jrg-project-5/issues/9)
