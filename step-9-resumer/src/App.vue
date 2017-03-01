@@ -1,12 +1,14 @@
 <template>
-  <div class=page>
-    <header>
-      <Topbar/>
-    </header>
-    <main>
-      <ResumeEditor/>
-      <ResumePreview/>
-    </main>
+  <div>
+    <div class=page>
+      <header>
+        <Topbar/>
+      </header>
+      <main>
+        <ResumeEditor/>
+        <ResumePreview/>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -24,7 +26,7 @@
   export default {
     name: 'app',
     store,
-    components: { Topbar, ResumeEditor, ResumePreview },
+    components: { Topbar, ResumeEditor, ResumePreview},
     created() {
       document.body.insertAdjacentHTML('afterbegin', icons) //
       let state = localStorage.getItem('state')
