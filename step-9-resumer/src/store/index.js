@@ -54,11 +54,16 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    initState(state, payload){
+      Object.assign(state, payload)
+    },
     switchTab(state, payload) {
       state.selected = payload // 关于 payload 看这里 http://vuex.vuejs.org/zh-cn/mutations.html#提交载荷（payload）
+      localStorage.setItem('state', JSON.stringify(state))
     },
     updateResume(state, {path, value}){
       objectPath.set(state.resume, path, value)
+      localStorage.setItem('state', JSON.stringify(state))
     }
   }
 })
