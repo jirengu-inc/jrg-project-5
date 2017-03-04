@@ -2,7 +2,7 @@
   <div id="resumeEditor">
     <nav>
       <ol>
-        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
+        <li v-for="(item,index) in resumeConfig" :class="{active: item.field === selected}" @click="selected = item.field">
           <svg class="icon">
             <use :xlink:href="`#icon-${item.icon}`"></use>
           </svg>
@@ -10,7 +10,7 @@
       </ol>
     </nav>
     <ol class="panels">
-      <li v-for="item in resume.config" v-show="item.field === selected">
+      <li v-for="item in resumeConfig" v-show="item.field === selected">
         <div v-if="item.type === 'array'">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
@@ -43,6 +43,9 @@
       },
       resume (){
         return this.$store.state.resume
+      },
+      resumeConfig(){
+        return this.$store.state.resumeConfig
       }
     },
     methods: {
