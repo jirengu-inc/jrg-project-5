@@ -28,9 +28,6 @@ export default new Vuex.Store({
         birthday: ''
       },
       workHistory: [
-        {
-          company: '', content: ``
-        },
         { company: '', content: `` },
       ],
       education: [
