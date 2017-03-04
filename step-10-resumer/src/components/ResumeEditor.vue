@@ -58,7 +58,7 @@
         })
       },
       addResumeSubfield(field){
-        console.log(field)
+        this.$store.commit('addResumeSubfield', {field})
       }
     }
   }

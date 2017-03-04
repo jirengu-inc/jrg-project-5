@@ -53,6 +53,13 @@ export default new Vuex.Store({
     },
     removeUser(state){
       state.user.id = null
+    },
+    addResumeSubfield(state, {field}){
+      let empty = {}
+      state.resume[field].push(empty)
+      state.resumeConfig.filter((i)=>i.field === field)[0].keys.map((key)=>{
+        Vue.set(empty, key, '')
+      })
     }
 
   }
