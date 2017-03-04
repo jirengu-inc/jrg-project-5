@@ -21,16 +21,23 @@ export default new Vuex.Store({
         { field: 'awards', icon: 'cup' ,type: 'array',  keys: ['name', 'details'] },
         { field: 'contacts', icon: 'phone' ,type: 'array',  keys: ['contact', 'content'] },
       ],
-      profile: { },
-      workHistory: [ ],
-      education: [ ],
-      projects: [ ],
-      awards: [ ],
-      contacts: [ ],
     }
   },
   mutations: {
     initState(state, payload){
+      state.resume.config.map((item)=>{
+        if(item.type === 'array'){
+          //state.resume[item.field] = [] // 这样写 Vue 无法监听属性变化
+          Vue.set(state.resume, item.field, [])
+        }else{
+          //state.resume[item.field] = {} // 这样写 Vue 无法监听属性变化
+          Vue.set(state.resume, item.field, {})
+          item.keys.map((key)=>{
+            //state.resume[item.field][key] = '' // 这样写 Vue 无法监听属性变化
+            Vue.set(state.resume[item.field], key, '')
+          })
+        }
+      })
       Object.assign(state, payload)
     },
     switchTab(state, payload) {
