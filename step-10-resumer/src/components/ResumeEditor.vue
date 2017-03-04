@@ -12,6 +12,7 @@
     <ol class="panels">
       <li v-for="item in resumeConfig" v-show="item.field === selected">
         <div v-if="item.type === 'array'">
+          <h2>{{item.field}}</h2>
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{key}} </label>
@@ -19,6 +20,7 @@
             </div>
             <hr>
           </div>
+          <button @click="addResumeSubfield(item.field)">新增</button>
         </div>
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
@@ -54,6 +56,9 @@
           path,
           value
         })
+      },
+      addResumeSubfield(field){
+        console.log(field)
       }
     }
   }
