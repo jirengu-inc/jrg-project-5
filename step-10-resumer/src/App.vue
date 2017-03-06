@@ -102,6 +102,13 @@
       background:#02af5f;
       color: white;
     }
+    &.small {
+      height: 24px;
+      font-size: inherit;
+      width: auto;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
 
   }
 </style>
