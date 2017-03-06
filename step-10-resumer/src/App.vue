@@ -82,4 +82,26 @@
     vertical-align: -0.1em;
     font-size:16px;
   }
+  .button{ 
+    width:72px;
+    height:32px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; // 设计稿上是 20px，看起来太大，就改成 18px 了
+    background:#ddd;
+    color: #222;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    &:hover{
+      box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
+    }
+    &.primary{
+      background:#02af5f;
+      color: white;
+    }
+
+  }
 </style>
