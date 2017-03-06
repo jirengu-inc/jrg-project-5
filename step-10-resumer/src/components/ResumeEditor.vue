@@ -14,8 +14,9 @@
         <div v-if="item.type === 'array'">
           <h2>{{$t(`resume.${item.field}._`)}}</h2>
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+            <button class="button remove">删除</button>
             <div class="resumeField" v-for="(value,key) in subitem">
-              <label> {{$t(`resume.${item.field}.${key}`)}} </label>
+              <label> {{$t(`resume.${item.field}.${key}`)}}</label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
             </div>
             <hr>
@@ -124,5 +125,13 @@
     border: none;
     border-top: 1px solid #ddd;
     margin: 24px 0;
+  }
+  .subitem{
+    position: relative;
+    .button.remove{
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 </style>
