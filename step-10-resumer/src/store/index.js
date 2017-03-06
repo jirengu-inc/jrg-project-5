@@ -60,6 +60,9 @@ export default new Vuex.Store({
       state.resumeConfig.filter((i)=>i.field === field)[0].keys.map((key)=>{
         Vue.set(empty, key, '')
       })
+    },
+    removeResumeSubfield(state, {field, index}){
+      state.resume[field].splice(index, 1)
     }
 
   }
