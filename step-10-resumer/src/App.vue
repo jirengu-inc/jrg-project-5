@@ -35,9 +35,10 @@
       if(state){
         state = JSON.parse(state) 
       }
-      this.$store.commit('initState', state)
       this.$store.commit('setUser', getAVUser())
-
+      this.$store.dispatch('fetchResume').then(()=> {
+        this.$store.commit('initState', state)
+      })
     }
   }
 </script>
