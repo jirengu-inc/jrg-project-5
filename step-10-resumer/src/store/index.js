@@ -41,15 +41,16 @@ export default new Vuex.Store({
           })
         }
       })
-      Object.assign(state, payload)
+      if(payload){
+        Object.assign(state, payload)
+      }
     },
     switchTab(state, payload) {
       state.selected = payload // 关于 payload 看这里 http://vuex.vuejs.org/zh-cn/mutations.html#提交载荷（payload）
-      localStorage.setItem('state', JSON.stringify(state))
     },
     updateResume(state, { path, value }) {
       objectPath.set(state.resume, path, value)
-      localStorage.setItem('state', JSON.stringify(state))
+      localStorage.setItem('resume', JSON.stringify(state.resume))
     },
     setUser(state, payload) {
       Object.assign(state.user, payload)
@@ -112,7 +113,9 @@ export default new Vuex.Store({
       var query = new AV.Query('Resume');
       query.equalTo('owner_id', getAVUser().id)
       query.first().then((resume)=>{
-        commit('setResume', {id: resume.id, ...resume.attributes})
+        if(resume){
+          commit('setResume', {id: resume.id, ...resume.attributes})
+        }
       })
     }
   }

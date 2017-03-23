@@ -25,20 +25,31 @@
   import AV from './lib/leancloud'
   import getAVUser from './lib/getAVUser'
 
+  document.body.insertAdjacentHTML('afterbegin', icons)
+
   export default {
     name: 'app',
     store,
     components: { Topbar, ResumeEditor, ResumePreview},
     created() {
-      document.body.insertAdjacentHTML('afterbegin', icons) //
-      let state = localStorage.getItem('state')
-      if(state){
-        state = JSON.parse(state) 
+      this.$store.commit('initState') // 初始化 resume 结构
+      let user = getAVUser()
+      this.$store.commit('setUser', user)
+      if(user.id){
+        this.$store.dispatch('fetchResume').then(()=> { 
+          this.restoreResumeFromLocalStorage()
+        })
+      }else{
+        this.restoreResumeFromLocalStorage()
       }
-      this.$store.commit('setUser', getAVUser())
-      this.$store.dispatch('fetchResume').then(()=> {
-        this.$store.commit('initState', state)
-      })
+    },
+    methods:{
+      restoreResumeFromLocalStorage(){
+        let resume = localStorage.getItem('resume')
+        if(resume){
+          this.$store.commit('setResume', JSON.parse(resume))
+        }
+      }
     }
   }
 </script>
