@@ -14,17 +14,26 @@
 
 <script>
 
-  import Topbar from './Topbar'
-  import ResumeEditor from './ResumeEditor'
-  import ResumePreview from './ResumePreview'
+import Topbar from './Topbar'
+import ResumeEditor from './ResumeEditor'
+import ResumePreview from './ResumePreview'
 
-  export default {
-    name: 'Resume',
-    components: { Topbar, ResumeEditor, ResumePreview},
-    created() {
-    }
+export default {
+  name: 'Resume',
+  components: { Topbar, ResumeEditor, ResumePreview },
+  created() {
   }
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+#resumeEditor {
+  min-width: 35%;
+  background: #444;
+}
+
+#resumePreview {
+  flex-grow: 1;
+  margin-left: 16px;
+}
 </style>
