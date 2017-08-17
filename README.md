@@ -68,3 +68,7 @@ JS 文件已经可以运行了，Vue 也引入了，那我们就直接开始撸�
 删掉所有双向绑定，改为单向数据流
 
 [单向数据流](https://github.com/jirengu-inc/jrg-project-5/issues/10)
+
+# 任务十
+
+[重来](https://github.com/jirengu-inc/jrg-project-5/issues/12)
