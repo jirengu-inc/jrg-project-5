@@ -2,6 +2,8 @@
 
 「通过项目学知识」之「一个在线简历编辑器」。
 
+注意：如果你在 npm install 的时候卡在 phantomjs，就在 package.json 把 phantom 相关的依赖全部删掉，我们用不到它们。
+
 # 任务一
 
 首先我们要学会使用目前最新的模块加载器：Webpack
